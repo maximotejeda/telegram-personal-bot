@@ -1,0 +1,20 @@
+#+TITLE: telegram-personal-bot
+#+AUTHOR: Maximo Tejeda
+#+EMAIL: maximotejeda.com
+
+
+* Telegram bot for personal use:
+
+im hosting my servers on my own so i need some help to manage some *repetitive simple task*:
+The project itself is very dangerous to expose that informacion to the net is just i try.
+- Update
+- Upgrade
+- Restart
+- podman
+  - listing container
+  - killing container
+
+** Selections
+   1. the Api seleted as title says is the telegram API.
+   2. i'll use javascript for comunicating with the server.
+   3. The module selected to abstract the api will be telegraf

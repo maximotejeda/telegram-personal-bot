@@ -1,0 +1,5 @@
+0package-lock.json
+node_modules/
+.env
+README.org~
+.gitignore~

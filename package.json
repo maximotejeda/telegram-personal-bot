@@ -4,7 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "juye": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig":{
+    "verbose":true,
+    "ignore": ["test/*", ".git", "node_modules/**/node_modules"],
+    "delay": "1500",
+    "execMap": {
+      "js": "node --harmony"
+    },
+    "events": {
+      "restart": "echo '\"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+    },
+    "ext": "js, json"
   },
   "keywords": [],
   "author": "",
