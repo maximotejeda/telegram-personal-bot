@@ -91,7 +91,7 @@ async function containerStop(ctx, container){
  * @param {*} ctx 
  */
 async function listStopedContainers(ctx){
-    exec('docker ps --filter "status=exited" --format "{{.ID}} {{.Names}}"',async (error, stdout, stderr)=>{
+    exec(`${controller} ps --filter "status=exited" --format "{{.ID}} {{.Names}}"`,async (error, stdout, stderr)=>{
         let cnt =[]
         stdout = stdout.split('\n')
         stdout.forEach((val, idx)=>{
