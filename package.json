@@ -7,9 +7,13 @@
     "juye": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "nodemonConfig":{
-    "verbose":true,
-    "ignore": ["test/*", ".git", "node_modules/**/node_modules"],
+  "nodemonConfig": {
+    "verbose": true,
+    "ignore": [
+      "test/*",
+      ".git",
+      "node_modules/**/node_modules"
+    ],
     "delay": "1500",
     "execMap": {
       "js": "node --harmony"
@@ -26,6 +30,7 @@
     "dotenv": "^10.0.0",
     "fetch": "^1.1.0",
     "node-telegram-bot-api": "^0.53.0",
-    "telegraf": "^4.3.0"
+    "telegraf": "^4.3.0",
+    "telegraf-inline-menu": "^6.2.1"
   }
 }
