@@ -44,7 +44,7 @@ async function containerRestart(ctx, container){
     if(!ctx.state.role === "admin"){
         return ctx.reply("No authorizado")
     }
-    exec(`docker restart ${container}`,(error, stdout, stderr)=>{
+    exec(`${controller} restart ${container}`,(error, stdout, stderr)=>{
         btn = [[
             {text:'Delete', callback_data:'delete'}
         ]]
@@ -56,7 +56,7 @@ async function containerRestart(ctx, container){
     })
 }
 async function containerLog(ctx, container){
-    exec(`docker logs --tail 20 ${container}`,(error, stdout, stderr)=>{
+    exec(`${controller} logs --tail 20 ${container}`,(error, stdout, stderr)=>{
         btn = [[
             {text:'Delete', callback_data:'delete'}
         ]]
@@ -75,7 +75,7 @@ async function containerStop(ctx, container){
     if(!ctx.state.role === "admin"){
         return ctx.reply("No authorizado")
     }
-    exec(`docker stop ${container}`,(error, stdout, stderr)=>{
+    exec(`${controller} stop ${container}`,(error, stdout, stderr)=>{
         btn = [[
             {text:'Delete', callback_data:'delete'}
         ]]
@@ -110,7 +110,7 @@ async function containerStart(ctx, container){
     if(!ctx.state.role === "admin"){
         return ctx.reply("No authorizado")
     }console.log('admin')
-    exec(`docker start ${container}`,(error, stdout, stderr)=>{
+    exec(`${controller} start ${container}`,(error, stdout, stderr)=>{
         btn = [[
             {text:'Delete', callback_data:'delete'}
         ]]
@@ -125,7 +125,7 @@ async function containerRm(ctx, container){
     if(!ctx.state.role === "admin"){
         return ctx.reply("No authorizado")
     }
-    exec(`docker rm ${container}`,(error, stdout, stderr)=>{
+    exec(`${controller} rm ${container}`,(error, stdout, stderr)=>{
         btn = [[
             {text:'Delete', callback_data:'delete'}
         ]]
