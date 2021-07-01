@@ -1,4 +1,5 @@
 const {exec} = require("child_process")
+const controller =  process.env.COMMANDER
 
 /**
  * sleep the execution for a number of milliseconds
@@ -8,17 +9,32 @@ const {exec} = require("child_process")
     setTimeout(()=>{}, num)
 }
 
+async function grouping(list){
+    let newList = [[]]
+    let counter = 0
+    for(let i =0; i<list.length; i++){
+        if(i>0 && i%3===1){
+            newList.push([])
+            counter ++
+        }
+        newList[counter].push(list[i])
+    }
+    return newList
+}
+
 async function listContainers(ctx){
-    exec('docker ps --format "{{.ID}} {{.Names}}"',(error, stdout, stderr)=>{
+    exec(`${controller} ps --format "{{.ID}} {{.Names}}"`,async (error, stdout, stderr)=>{
         let cnt =[]
         stdout = stdout.split('\n')
         stdout.forEach((val, idx)=>{
             let [id, name] = val.split(' ')
             if(name)cnt.push({text:name, callback_data:`container:${id}`})
         }) 
+        let newCnt = await grouping(cnt)
+        
         ctx.telegram.sendMessage(ctx.chat.id, `containers Activos:\n${stdout}`, {
             reply_markup:{
-            inline_keyboard: [cnt]
+            inline_keyboard: newCnt
             }
         })
     })
@@ -75,16 +91,17 @@ async function containerStop(ctx, container){
  * @param {*} ctx 
  */
 async function listStopedContainers(ctx){
-    exec('docker ps --filter "status=exited" --format "{{.ID}} {{.Names}}"',(error, stdout, stderr)=>{
+    exec('docker ps --filter "status=exited" --format "{{.ID}} {{.Names}}"',async (error, stdout, stderr)=>{
         let cnt =[]
         stdout = stdout.split('\n')
         stdout.forEach((val, idx)=>{
             let [id, name] = val.split(' ')
             if(name)cnt.push({text:name, callback_data:`container:${id}`})
         }) 
+        let newCnt = await grouping(cnt)
         ctx.telegram.sendMessage(ctx.chat.id, `inactive containers:\n${stdout}`, {
             reply_markup:{
-            inline_keyboard: [cnt]
+            inline_keyboard: newCnt
             }
         })
     })
